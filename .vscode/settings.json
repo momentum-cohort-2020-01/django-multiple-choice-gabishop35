@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/Users/geoffbishop/.local/share/virtualenvs/django-multiple-choice-gabishop35-b9GGoT9B/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.prospectorEnabled": true,
+    "python.linting.enabled": true
+}

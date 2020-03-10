@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<script src="{% static 'js/question_box.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <button type="submit" id="question-button"class="question-button">Ask New Question</button>
+{% for question in questions %}
+<div class="question-div">
+<a href= "{% url 'question-details' question.pk %}">
+    <p>{{ question.title }}</p>
+    <p>{{ question.body }}</p>
+</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
