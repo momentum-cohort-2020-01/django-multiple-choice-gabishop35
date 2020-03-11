@@ -6,7 +6,7 @@ class Question(models.Model):
     title = models.CharField(max_length=50)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="questions")
 
     def __str__(self):
         return f"Question title {self.title}, body {self.body}, created_at {self.created_at}, creator {self.creator}"

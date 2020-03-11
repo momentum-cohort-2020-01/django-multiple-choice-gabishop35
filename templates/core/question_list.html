@@ -7,9 +7,15 @@
 
 {% block content %}
 
-
+<form id="question-form-">
 <div class="container">
-    <button type="submit" id="question-button"class="question-button">Ask New Question</button>
+    <button type="submit" id="question-button" class="question-button">Ask New Question</button>
+
+<input id="title">
+<input id="body">
+
+</form>
+<div id="question-container">
 {% for question in questions %}
 <div class="question-div">
 <a href= "{% url 'question-details' question.pk %}">
@@ -18,5 +24,6 @@
 </a>
 </div>
 {% endfor %}
+</div>
 </div>
 {% endblock %}
