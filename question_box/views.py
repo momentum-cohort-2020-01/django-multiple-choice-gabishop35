@@ -42,7 +42,6 @@ def question_add(request):
             "pk": new_question.pk,
             "title": new_question.title,
             "body": new_question.body,
-
         },
     })
 

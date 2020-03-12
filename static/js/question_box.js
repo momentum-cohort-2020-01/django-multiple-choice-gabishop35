@@ -14,15 +14,15 @@ function askQuestion () {
       .then(res => res.json())
       .then(json => {
         if (json.status === 'ok') {
-          console.log(json.data)
-          // document.createElement
-          // let
+          return console.log('working')
+          // return '<p class='p-tag' data-question-id='${data.pk}'>${data.title}, ${data.body} </p>'
         }
       })
   })
 }
 
 function createQuestionHTML (data) {
+  debugger
   return '<p class='p-tag' data-question-id='${data.pk}'>${data.title}, ${data.body} </p>'
 }
 
