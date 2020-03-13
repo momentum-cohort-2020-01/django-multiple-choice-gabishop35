@@ -13,8 +13,10 @@ function askQuestion () {
     })
       .then(res => res.json())
       .then(json => {
+        console.log(json.data)
+
         if (json.status === 'ok') {
-          return console.log('working')
+          showQuestion(json.data)
           // return '<p class='p-tag' data-question-id='${data.pk}'>${data.title}, ${data.body} </p>'
         }
       })
@@ -22,17 +24,25 @@ function askQuestion () {
 }
 
 function createQuestionHTML (data) {
-  debugger
-  return '<p class='p-tag' data-question-id='${data.pk}'>${data.title}, ${data.body} </p>'
+  return `<a href="'question/<int:pk>/'" class='p-tag' > ${data.title} ${data.body} </a>`
 }
 
 function showQuestion (data) {
+  // console.log(data)
   const questionHTML = createQuestionHTML(data)
   const questionContainer = document.querySelector('#question-container')
   questionContainer.insertAdjacentHTML('beforeend', questionHTML)
 }
 
+function getAllQuestions () {
+  return fetch('http://127.0.0.1:8000/', {
+    method: 'GET'
+  })
+    .then(response => response.json())
+}
+
+getAllQuestions().then(showQuestion)
+
 document.addEventListener('DOMContentLoaded', function () {
   askQuestion()
-}
-)
+})

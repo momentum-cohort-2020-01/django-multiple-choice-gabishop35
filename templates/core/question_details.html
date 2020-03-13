@@ -1,2 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block meta %}
+<script src="{% static 'js/question_box.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="question-box">
+    <h2 class="question-title">{{ questions.title }}</h2>
+    <h2 class="question-body">{{ questions.body }}</h2>
+
+</div>
+{% endblock %}
