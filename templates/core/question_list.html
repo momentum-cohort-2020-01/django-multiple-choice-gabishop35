@@ -23,6 +23,7 @@
     <p>{{ question.title }}</p>
     <p>{{ question.body }}</p>
 </a>
+<a href="{% url 'question-delete' pk=question.pk %}">Delete Question</a>
 </div>
 {% endfor %}
 </div>

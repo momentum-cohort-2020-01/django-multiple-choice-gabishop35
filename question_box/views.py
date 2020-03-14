@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from question_box.models import Question, Answer
 from users.models import User
-from question_box.forms import QuestionForm
+from question_box.forms import QuestionForm, AnswerForm
 from django.http import JsonResponse
 import json
 
@@ -50,3 +50,14 @@ def question_delete(request, pk):
     question = get_object_or_404(Question, pk=pk)
     question.delete()
     return redirect('question-list')
+
+def answer_add(request):
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.save()
+            return redirect('question-details')
+    else:
+        form = AnswerForm()
+    return render(request, 'core/answer_add.html', {'form': form})

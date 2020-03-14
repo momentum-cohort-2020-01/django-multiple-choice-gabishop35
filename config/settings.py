@@ -143,6 +143,7 @@ STATICFILES_DIRS = [
 # Custom user model
 
 AUTH_USER_MODEL = 'users.User'
+ACCOUNT_ACTIVATION_DAYS=7
 
 # Debug toolbar config
 
