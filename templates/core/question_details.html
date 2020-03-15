@@ -2,16 +2,21 @@
 {% load static %}
 
 {% block meta %}
-<script src="{% static 'js/question_box.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 
 <div class="question-box">
-    <h2 class="question-title">{{ questions.title }}</h2>
-    <h2 class="question-body">{{ questions.body }}</h2>
+    <h2 class="question-title">{{ question.title }}</h2>
+    <h2 class="question-body">{{ question.body }}</h2>
 
-    <a href="{% url 'answer-add' %}">Add Answer</a>
+    <div class='answer-form'>
+        <form method="POST" class="answer">
+            <h2 class="form-title">Add a Answer.</h2>
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+          </form>
+    </div>
    
     {% for answer in answers %}
 

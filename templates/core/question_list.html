@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block meta %}
-<script src="{% static 'js/question_box.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 
-<form id="question-form">
+<!-- <form id="question-form">
 <div class="container">
-    <button type="submit" id="question-button" class="question-button">Ask New Question</button>
+    <a type="submit" id="question-button" class="question-button">Ask New Question</a>
 
 <input id="title">
 <input id="body">
 
-</form>
+</form> -->
+<a href="{% url 'question-add' %}">Ask New Question</a>
 {% for question in questions %}
 <div id="question-container">
 

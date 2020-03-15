@@ -12,4 +12,4 @@ class AnswerForm(forms.ModelForm):
 
     class Meta:
         model = Answer
-        fields = ('response',)
+        fields = ('response_body',)

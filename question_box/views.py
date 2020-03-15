@@ -7,15 +7,26 @@ from question_box.forms import QuestionForm, AnswerForm
 from django.http import JsonResponse
 import json
 
+
+@login_required
 def question_list(request):
     questions = Question.objects.all()
-    # answers = Answer.objects.all()
+    # answers = Answer.objects.filter(answer=question.pk)
     return render(request, 'core/question_list.html', {'questions': questions})
 
 def question_details(request, pk):
-    questions = get_object_or_404(Question, pk=pk)
-    answers = Answer.objects.all()
-    return render(request, 'core/question_details.html', {'questions': questions, 'answers':answers})
+    question = get_object_or_404(Question, pk=pk)
+    answers = Answer.objects.filter(response=question.pk)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.response = question
+            answer.save()
+            return redirect('question-details', pk=pk)
+    else:
+        form = AnswerForm()
+        return render(request, 'core/question_details.html', {'question': question, 'answers':answers, 'form': form})
 
 def question_add(request):
     if request.method == "POST":
@@ -51,13 +62,15 @@ def question_delete(request, pk):
     question.delete()
     return redirect('question-list')
 
-def answer_add(request):
-    if request.method == "POST":
-        form = AnswerForm(request.POST)
-        if form.is_valid():
-            answer = form.save(commit=False)
-            answer.save()
-            return redirect('question-details')
-    else:
-        form = AnswerForm()
-    return render(request, 'core/answer_add.html', {'form': form})
+# def answer_add(request, pk):
+#     question = get_object_or_404(Question, pk=pk)
+#     answers = Answer.objects.filter(response=question.pk)
+#     if request.method == "POST":
+#         form = AnswerForm(request.POST)
+#         if form.is_valid():
+#             answer = form.save(commit=False)
+#             answer.save()
+#             return redirect('question-details')
+#     else:
+#         form = AnswerForm()
+#     return render(request, 'core/answer_add.html', {'form': form})
