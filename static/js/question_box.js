@@ -35,7 +35,7 @@ function showQuestion (data) {
 }
 
 function getAllQuestions () {
-  return fetch('http://127.0.0.1:8000/', {
+  return fetch('', {
     method: 'GET'
   })
     .then(response => response.json())

@@ -4,8 +4,11 @@
 {% block content %}
 <div class='answer-form'>
     <form method="POST" class="answer">
+        <h2>{{ questions.title }}</h2>
+        <h2>{{ questions.body }}</h2>
         <h2 class="form-title">Add a Answer.</h2>
         {% csrf_token %} {{ form.as_p }}
+        <input>
         <button type="submit" class="save btn btn-default">Save</button>
       </form>
 </div>

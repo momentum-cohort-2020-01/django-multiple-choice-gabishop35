@@ -7,7 +7,6 @@
 
 {% block content %}
 
-
 <div class="question-box">
     <h2 class="question-title">{{ questions.title }}</h2>
     <h2 class="question-body">{{ questions.body }}</h2>
@@ -15,7 +14,9 @@
     <a href="{% url 'answer-add' %}">Add Answer</a>
    
     {% for answer in answers %}
-    
+
+    <h2 class="answer-body"> {{ answer.response_body }} </h2>
+
     {% endfor%}
 
 </div>

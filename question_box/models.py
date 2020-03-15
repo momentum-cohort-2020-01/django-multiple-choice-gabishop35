@@ -15,6 +15,7 @@ class Answer(models.Model):
     response_body = models.TextField()
     response = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
     response_date = models.DateTimeField(auto_now=True)
+    # user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return f"Answer response_body{self.response_body}, response {self.response}, response_date {self.response_date}"

@@ -17,33 +17,33 @@ def question_details(request, pk):
     answers = Answer.objects.all()
     return render(request, 'core/question_details.html', {'questions': questions, 'answers':answers})
 
-# def question_add(request):
-#     if request.method == "POST":
-#         form = QuestionForm(request.POST)
-#         if form.is_valid():
-#             question = form.save(commit=False)
-#             question.save()
-#             return redirect('question-list')
-#     else:
-#         form = QuestionForm()
-#         return render(request, 'core/question_add.html', {'form': form})
-
-@csrf_exempt
 def question_add(request):
-    data = json.loads(request.body.decode('utf-8'))
-    question_body = data.get("questionBody")
-    question_title = data.get("questionTitle")
-    new_question = Question.objects.create(title=question_title, body=question_body,)
-    if question_body and question_title:
-        return JsonResponse(
-            {
-        "status":"ok",
-        "data": {
-            "pk": new_question.pk,
-            "title": new_question.title,
-            "body": new_question.body,
-        },
-    })
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.save()
+            return redirect('question-list')
+    else:
+        form = QuestionForm()
+        return render(request, 'core/question_add.html', {'form': form})
+
+# @csrf_exempt
+# def question_add(request):
+#     data = json.loads(request.body.decode('utf-8'))
+#     question_body = data.get("questionBody")
+#     question_title = data.get("questionTitle")
+#     new_question = Question.objects.create(title=question_title, body=question_body,)
+#     if question_body and question_title:
+#         return JsonResponse(
+#             {
+#         "status":"ok",
+#         "data": {
+#             "pk": new_question.pk,
+#             "title": new_question.title,
+#             "body": new_question.body,
+#         },
+#     })
 
 
 def question_delete(request, pk):

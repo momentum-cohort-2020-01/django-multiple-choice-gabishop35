@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.question_list, name = 'question-list'),
     path('question/<int:pk>/', views.question_details, name='question-details'),
     path('question/<int:pk>/delete/', views.question_delete, name='question-delete'),
-    path('question/<int:pk>/answer/', views.answer_add, name='answer-add')
+    path('answer/', views.answer_add, name='answer-add')
 ]
 
 if settings.DEBUG:
