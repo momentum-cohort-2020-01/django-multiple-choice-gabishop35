@@ -11,7 +11,7 @@ import json
 @login_required
 def question_list(request):
     questions = Question.objects.all()
-    favorite_questions = get_user_favorite(request)
+    # favorite_questions = get_user_favorite(request)
     return render(request, 'core/question_list.html', {'questions': questions})
 
 def question_details(request, pk):
