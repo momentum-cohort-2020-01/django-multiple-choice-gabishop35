@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
-from question_box.models import Question, Answer
+from question_box.models import Question, Answer, Favorite
 from users.models import User
 from question_box.forms import QuestionForm, AnswerForm
 from django.http import JsonResponse
@@ -11,7 +11,7 @@ import json
 @login_required
 def question_list(request):
     questions = Question.objects.all()
-    # answers = Answer.objects.filter(answer=question.pk)
+    favorite_questions = get_user_favorite(request)
     return render(request, 'core/question_list.html', {'questions': questions})
 
 def question_details(request, pk):
@@ -74,3 +74,19 @@ def question_delete(request, pk):
 #     else:
 #         form = AnswerForm()
 #     return render(request, 'core/answer_add.html', {'form': form})
+
+
+
+# ********trying to make favorites work************
+
+# def favorite(request):
+#     # for favorite in books:
+#     favorite = Favorite.objects.create(owner=request.owner)
+#     questions = Question.objects.filter.favorite_set(favorite=question.favorite)
+#     favorite.save()
+#     return redirect('question-list')
+
+# def get_user_favorite(request):
+#     user = User.objects.get(username=request.user.username)
+#     favorite_questions = [favorite.question for favorite in user.favorites.all()]
+#     return favorite_questions

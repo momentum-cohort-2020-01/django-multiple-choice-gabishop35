@@ -3,5 +3,43 @@
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    text-decoration: none;
+
 }
+
+.title {
+    margin:1rem;
+    padding:2rem;
+    border:2rem solid black;
+    display: flex;
+    justify-content: center;}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+}
+
+.question-button {
+    display: flex;
+    padding:.5rem;
+    font-size: 30px;
+    margin-bottom: .5rem;
+    margin-left: .5rem;
+}
+
+.question-button:hover {
+    background-color: blueviolet;
+
+}
+
+.question-div {
+    padding:.5rem;
+}
+
+.delete {
+    padding: .5rem;
+    margin-left:.5rem;
+}
+
 

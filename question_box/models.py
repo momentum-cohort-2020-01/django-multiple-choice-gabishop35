@@ -21,7 +21,11 @@ class Answer(models.Model):
         return f"Answer response_body{self.response_body}, response {self.response}, response_date {self.response_date}"
 
 class Favorite(models.Model):
-    pass
+    owner = models.ForeignKey(User, related_name='favorites', on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='favorites', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Favorite: {self.owner}, Question: {self.question}"
 
 class Correct(models.Model):
     pass

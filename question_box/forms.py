@@ -2,6 +2,7 @@ from django import forms
 from question_box.models import Question, Answer
 
 class QuestionForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea, label="")
 
     class Meta:
         model = Question
@@ -9,6 +10,7 @@ class QuestionForm(forms.ModelForm):
 
 
 class AnswerForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea, label="")
 
     class Meta:
         model = Answer

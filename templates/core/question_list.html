@@ -14,18 +14,22 @@
 <input id="body">
 
 </form> -->
-<a href="{% url 'question-add' %}">Ask New Question</a>
-{% for question in questions %}
-<div id="question-container">
+<a href="{% url 'question-add' %}"><button class="question-button">Ask New Question</button></a>
+<div id="question-container" class="question-container">
+    {% for question in questions %}
 
 <div class="question-div">
 <a href= "{% url 'question-details' question.pk %}">
     <p>{{ question.title }}</p>
-    <p>{{ question.body }}</p>
 </a>
-<a href="{% url 'question-delete' pk=question.pk %}">Delete Question</a>
+<p>{{ question.body }}</p>
 </div>
+
+<a href="{% url 'question-delete' pk=question.pk %}"><button class="delete">Delete Question</button></a>
 {% endfor %}
+{% if book in favorite_books %}
+<i class="fas fa-cat"></i>
+{% endif %}
 </div>
 </div>
 {% endblock %}
