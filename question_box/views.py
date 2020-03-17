@@ -28,7 +28,7 @@ def question_details(request, pk):
             return redirect('question-details', pk=pk)
     else:
         form = AnswerForm()
-        return render(request, 'core/question_details.html', {'question': question, 'answers':answers, 'form': form})
+        return render(request, 'core/question_details.html', {'question': question, 'answers':answers, 'form': form, 'user':request.user})
 
 def question_add(request):
     if request.method == "POST":
@@ -92,10 +92,10 @@ def tagged(request, slug):
 
 def favorite(request, question_pk):
     # for favorite in books:
-    question = get_object_or_404(Question, question_pk)
+    question = get_object_or_404(Question, pk=question_pk)
     favorite = Favorite.objects.create(owner=request.user, question=question)
     print(favorite)
-    return redirect('question-list')
+    return render(request, 'core/question_details.html', {'question': question})
 
 # def get_user_favorite(request):
 #     user = User.objects.get(username=request.user.username)
