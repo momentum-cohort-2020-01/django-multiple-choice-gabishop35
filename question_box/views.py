@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
-from question_box.models import Question, Answer, Favorite
+from question_box.models import Question, Answer, Favorite, Category
 from users.models import User
 from question_box.forms import QuestionForm, AnswerForm
+from django.utils.text import slugify
 from django.http import JsonResponse
 import json
+# from django.contrib.messages import .......
 
 
 @login_required
@@ -59,8 +61,11 @@ def question_add(request):
 
 def question_delete(request, pk):
     question = get_object_or_404(Question, pk=pk)
-    question.delete()
-    return redirect('question-list')
+    if question.creator.pk == request.user.pk:
+        question.delete()
+        return redirect('question-list')
+    # else:
+
 
 # def answer_add(request, pk):
 #     question = get_object_or_404(Question, pk=pk)
@@ -76,17 +81,23 @@ def question_delete(request, pk):
 #     return render(request, 'core/answer_add.html', {'form': form})
 
 
+def tagged(request, slug): 
+    # Filter books by tag name  
+    tag = Category.objects.get(slug=slug)
+    questions = Question.objects.filter(tag=tag)
+    return render(request, 'core/question_list.html', {'tag': tag, 'questions': questions})
+
 
 # ********trying to make favorites work************
 
-# def favorite(request):
-#     # for favorite in books:
-#     favorite = Favorite.objects.create(owner=request.owner)
-#     questions = Question.objects.filter.favorite_set(favorite=question.favorite)
-#     favorite.save()
-#     return redirect('question-list')
+def favorite(request, question_pk):
+    # for favorite in books:
+    question = get_object_or_404(Question, question_pk)
+    favorite = Favorite.objects.create(owner=request.user, question=question)
+    print(favorite)
+    return redirect('question-list')
 
 # def get_user_favorite(request):
 #     user = User.objects.get(username=request.user.username)
-#     favorite_questions = [favorite.question for favorite in user.favorites.all()]
+#     favorite_questions = [favorite.questions for favorite in user.favorites.all()]
 #     return favorite_questions

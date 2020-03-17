@@ -1,16 +1,16 @@
 from django import forms
-from question_box.models import Question, Answer
+from question_box.models import Question, Answer, Category, Favorite
 
 class QuestionForm(forms.ModelForm):
     body = forms.CharField(widget=forms.Textarea, label="")
 
     class Meta:
         model = Question
-        fields = ('title', 'body', 'creator')
+        fields = ('title', 'body', 'creator', 'tag')
 
 
 class AnswerForm(forms.ModelForm):
-    body = forms.CharField(widget=forms.Textarea, label="")
+    response_body = forms.CharField(widget=forms.Textarea, label="")
 
     class Meta:
         model = Answer

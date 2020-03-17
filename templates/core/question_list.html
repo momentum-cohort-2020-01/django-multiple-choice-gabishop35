@@ -26,10 +26,15 @@
 </div>
 
 <a href="{% url 'question-delete' pk=question.pk %}"><button class="delete">Delete Question</button></a>
+
+{% if question.tag %}
+<a href="{% url 'question-by-category' question.tag %}" class="tag">{{question.tag}}</a>
+{% endif %}
 {% endfor %}
 <!-- {% if book in favorite_books %}
 <i class="fas fa-cat"></i>
 {% endif %} -->
 </div>
+
 </div>
 {% endblock %}
