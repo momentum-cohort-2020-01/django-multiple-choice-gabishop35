@@ -7,7 +7,7 @@ from question_box.forms import QuestionForm, AnswerForm
 from django.utils.text import slugify
 from django.http import JsonResponse
 import json
-# from django.contrib.messages import .......
+from django.contrib import messages
 
 
 @login_required
@@ -28,7 +28,7 @@ def question_details(request, pk):
             return redirect('question-details', pk=pk)
     else:
         form = AnswerForm()
-        return render(request, 'core/question_details.html', {'question': question, 'answers':answers, 'form': form})
+        return render(request, 'core/question_details.html', {'question': question, 'answers':answers, 'form': form, 'user':request.user})
 
 def question_add(request):
     if request.method == "POST":
@@ -64,7 +64,8 @@ def question_delete(request, pk):
     if question.creator.pk == request.user.pk:
         question.delete()
         return redirect('question-list')
-    # else:
+    else:
+        messages.add_message(request, messages.INFO, 'You do not have the authority to delete this question.')
 
 
 # def answer_add(request, pk):
@@ -92,10 +93,10 @@ def tagged(request, slug):
 
 def favorite(request, question_pk):
     # for favorite in books:
-    question = get_object_or_404(Question, question_pk)
+    question = get_object_or_404(Question, pk=question_pk)
     favorite = Favorite.objects.create(owner=request.user, question=question)
     print(favorite)
-    return redirect('question-list')
+    return render(request, 'core/question_details.html', {'question': question})
 
 # def get_user_favorite(request):
 #     user = User.objects.get(username=request.user.username)

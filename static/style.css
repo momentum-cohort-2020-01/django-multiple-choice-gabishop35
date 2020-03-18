@@ -2,22 +2,28 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
 
 }
 
+
 .title {
     margin:1rem;
     padding:2rem;
-    border:2rem solid black;
+    border:2rem solid gray;
     display: flex;
-    justify-content: center;}
+    justify-content: center;
+    background-color: crimson;
+}
+    
 
 .link {
     display: flex;
     justify-content: space-between;
     padding: .5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: green
 }
 
 .question-button {
@@ -26,6 +32,9 @@
     font-size: 30px;
     margin-bottom: .5rem;
     margin-left: .5rem;
+    border-radius: 1rem;
+    border: .5rem solid crimson;
+    background-color: darkgray;
 }
 
 .question-button:hover {
@@ -42,4 +51,8 @@
     margin-left:.5rem;
 }
 
-
+.tag {
+    font-size: 25px;
+    color: orchid;
+    margin-left: .5rem; 
+}

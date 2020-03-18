@@ -11,6 +11,7 @@ class Question(models.Model):
     tag = models.ForeignKey("Category", on_delete=models.CASCADE, null=True, blank=True)
 
 
+
     def __str__(self):
         return f"Question title {self.title}, body {self.body}, created_at {self.created_at}, creator {self.creator}"
 
