@@ -7,7 +7,7 @@ from question_box.forms import QuestionForm, AnswerForm
 from django.utils.text import slugify
 from django.http import JsonResponse
 import json
-# from django.contrib.messages import .......
+from django.contrib import messages
 
 
 @login_required
@@ -64,7 +64,8 @@ def question_delete(request, pk):
     if question.creator.pk == request.user.pk:
         question.delete()
         return redirect('question-list')
-    # else:
+    else:
+        messages.add_message(request, messages.INFO, 'You do not have the authority to delete this question.')
 
 
 # def answer_add(request, pk):

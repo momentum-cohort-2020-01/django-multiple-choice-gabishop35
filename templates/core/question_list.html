@@ -14,7 +14,9 @@
 <input id="body">
 
 </form> -->
+<div>
 <a href="{% url 'question-add' %}"><button class="question-button">Ask New Question</button></a>
+</div>
 <div id="question-container" class="question-container">
     {% for question in questions %}
 
@@ -24,12 +26,13 @@
 </a>
 <p>{{ question.body }}</p>
 </div>
-
-<a href="{% url 'question-delete' pk=question.pk %}"><button class="delete">Delete Question</button></a>
-
 {% if question.tag %}
 <a href="{% url 'question-by-category' question.tag %}" class="tag">{{question.tag}}</a>
 {% endif %}
+
+<a href="{% url 'question-delete' pk=question.pk %}"><button class="delete">Delete Question</button></a>
+
+
 {% endfor %}
 <!-- {% if book in favorite_books %}
 <i class="fas fa-cat"></i>

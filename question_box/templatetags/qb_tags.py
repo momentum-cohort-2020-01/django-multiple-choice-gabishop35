@@ -10,3 +10,12 @@ def is_favorite(question, user):
         return True
     else:
         return False
+
+
+# we will need this in the question_list template once we get the templatetags to work
+#  {% if not is_favorite question user %} 
+
+    # {% else %}
+    # <p>is favorite</p>
+    # {% endif %}
+

@@ -10,11 +10,8 @@
     <h2 class="question-title">{{ question.title }}</h2>
     <h2 class="question-body">{{ question.body }}</h2>
     <a href="{% url 'question-by-category' question.tag %}" class="tag">{{question.tag}}</a>
-    {% if not is_favorite question user %}
     <a href="{% url 'question-favorites' question.pk %}"><button class="favorites-button">Add to Favorites</button></a>
-    {% else %}
-    <p>is favorite</p>
-    {% endif %}
+
 
     <div class='answer-form'>
         <form method="POST" class="answer">
